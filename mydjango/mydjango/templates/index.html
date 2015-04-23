@@ -1,0 +1,180 @@
+<!DOCTYPE HTML>
+<!-- Website template by freewebsitetemplates.com -->
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>FastNews</title>
+	<link rel="stylesheet" href="media/css/style.css" type="text/css">
+	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+	    <script type="text/javascript">
+
+	      // Load the Visualization API and the piechart package.
+	      google.load('visualization', '1.0', {'packages':['corechart']});
+
+	      // Set a callback to run when the Google Visualization API is loaded.
+	      google.setOnLoadCallback(drawChart);
+
+	      // Callback that creates and populates a data table,
+	      // instantiates the pie chart, passes in the data and
+	      // draws it.
+	      function drawChart() {
+
+	        // Create the data table.
+	        var data = new google.visualization.DataTable();
+	        data.addColumn('string', 'Topping');
+	        data.addColumn('number', 'Slices');
+	        data.addRows([
+	          ['Travel', {{userInfo.TravelWeight}}],
+	          ['Music', {{userInfo.MusicWeight}}],
+				['Politic', {{userInfo.PoliticWeight}}],
+	          ['Entertainment', {{userInfo.EntertainmentWeight}}],
+	          ['Technology', {{userInfo.TechnologyWeight}}]
+	        ]);
+    // TravelWeight = models.FloatField(default=1)
+    // MusicWeight = models.FloatField(default=1)
+    // PoliticWeight = models.FloatField(default=1)
+    // EntertainmentWeight = models.FloatField(default=1)
+    // TechnologyWeight = models.FloatField(default=1)
+
+	        // Set chart options
+	        var options = {'title':'What are my intersts',
+	                       'width':500,
+	                       'height':400};
+
+	        // Instantiate and draw our chart, passing in some options.
+	        var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+	        chart.draw(data, options);
+	      }
+	    </script>
+</head>
+<body>
+	<div id="header">
+		<div id="headerbox">
+			<div class="logo">
+				<a href="index.html">FastNews</a>
+			</div>
+			<div id= "navigation_container">	
+				<!-- <div id="search_bar">
+					<div id="search_bar_content" >
+						<div id="searchframe">
+						    <form id="btn_subfrom" method="get" name="btn_subfrom" action="/was5/web/search" target="_blank">
+						      <div class="ilb js_il_box">
+						        <input type="text" name="searchword" id="header_search_kw" autocomplete="off" />
+						        <input type="button" value="search" class="button_add" />
+						      </div>
+						    </form>
+						</div>
+						<a id="login" href="{{navigation_link1}}" class="textem" style="float: left">&nbsp &nbsp {{navigation_label1}} &nbsp </a>
+						<a style="float: left">/</a>
+						<a id="register" href="{{navigation_link2}}" class="textem" style="float: left">&nbsp {{navigation_label2}} &nbsp </a>
+					 </div>
+				</div> -->
+				<div id="navigation">
+					<div class ="navigationitem">
+						<a href="index.html">Home</a>
+					</div>
+					<div class ="navigationitem">
+						<a href="logout.html">Logout</a>
+					</div>
+					<!-- <div class ="navigationitem">
+						<a href="galleries.html">Personalize</a>
+					</div> -->
+					<!-- <div class ="navigationitem">
+						<a href="news.html">News</a>
+					</div>
+					<div class ="navigationitem">
+						<a href="about.html">About</a>
+					</div> -->
+					<!-- <div class ="navigationitem">
+						<a href="contact.html">Contact</a>
+					</div> -->
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="contents">
+		<div class="main">
+			<h1>Latest News</h1>
+			<ul class="news">
+				{% if latest_news_list %}
+					{% for news in latest_news_list %}
+						<li>
+							<div class="date">
+								<p>
+									<span>{{news.day}}</span>
+									{{news.month}}
+								</p>
+							</div>
+							<h2>{{ news.theme }} <span> {{ news.author }} </span></h2>
+							<p>
+								{{ news.text }}
+								<!-- {{sometexts }} -->
+								<span><a href={{ news.weblinks }}  class="more">Read More</a></span> 
+								<!-- You can replace all this text with your own text. Want an easier solution for a Free Website? Head straight to Wix and immediately start customizing your website! Wix is an online website builder with a simple drag &amp; drop interface, meaning you do the work online and instantly publish to the web. All Wix templates are fully customizable and free to use. Just pick one you like, click Edit, and enter the online editor. -->
+							</p>
+						</li>
+						<!-- <li><a href="/polls/{{ question.id }}/">{{ question.question_text }}</a></li> -->
+				    {% endfor %}
+					
+				    <!-- <ul>
+				    {% for question in latest_question_list %}
+				        <li><a href="/polls/{{ question.id }}/">{{ question.question_text }}</a></li>
+				    {% endfor %}
+				    </ul> -->
+				{% else %}
+				    <p>No articles are available.</p>
+				{% endif %}
+			</ul>
+		</div>
+		<div class="sidebar">
+			<h1>Personalize</h1>
+			<ul class="posts">
+				<!-- <form action="index.html" method="post">
+				    {% csrf_token %}
+				    {{ form }}
+				    <input type="submit" value="Submit" />
+				</form> -->
+				<li>	
+				<form action="index.html" method="post" class="message">
+					{% csrf_token %}
+				    {{ form }}
+				    <p><input type="submit" value="Submit" /></p>
+				</form>
+				<!-- </li>
+				<li> -->
+					<div id="chart_div"></div>
+				</li>
+				<!-- <li>
+					<label for="your_name">Keywords1 </label>
+					<input id="your_name" type="text" name="your_name" maxlength="100">
+				    <input type="submit" value="OK">
+				</li>
+				<li>
+					<h4 class="title"><a href="post.html">Designs and Concepts</a></h4>
+					<p>
+						I'm a paragraph. Click here to add your own text and edit me. I’m a great place for you to tell a story and let your users know a little more about you.
+					</p>
+				</li>
+				<li>
+					<h4 class="title"><a href="post.html">Getting It Done!</a></h4>
+					<p>
+						I'm a paragraph. Click here to add your own text and edit me. I’m a great place for you to tell a story and let your users know a little more about you.
+					</p>
+				</li> -->
+			</ul>
+		</div>
+	</div>
+	<div id="footer">
+		<div id="footerbox">
+			<div class="clearfix">
+				<div id="connect">
+					<a href="http://freewebsitetemplates.com/go/facebook/" target="_blank" class="facebook"></a><a href="http://freewebsitetemplates.com/go/googleplus/" target="_blank" class="googleplus"></a><a href="http://freewebsitetemplates.com/go/twitter/" target="_blank" class="twitter"></a><a href="http://www.freewebsitetemplates.com/misc/contact/" target="_blank" class="tumbler"></a>
+				</div>
+				<p>
+					© 2023 FastNews. All Rights Reserved.
+				</p>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

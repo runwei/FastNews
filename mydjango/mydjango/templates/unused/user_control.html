@@ -1,0 +1,157 @@
+<!DOCTYPE HTML>
+<!-- Website template by freewebsitetemplates.com -->
+<html>
+
+<link media="all" href="media/nvd3/src/nv.d3.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="media/d3/d3.min.js"></script>
+<script type="text/javascript" src="media/nvd3/nv.d3.min.js"></script>
+{% load nvd3_tags %}
+
+
+<head>
+	<meta charset="UTF-8">
+	<title>About - Zerotype Website Template</title>
+	<link rel="stylesheet" href="media/css/style.css" type="text/css">
+    {% include_chart_jscss %}
+	<script>
+    {% load_chart charttype chartdata chartcontainer extra %}
+	</script>
+</head>
+
+
+<body>
+	<div id="header">
+		<div id="headerbox">
+			<div class="logo">
+				<a href="index.html">Zero Type</a>
+			</div>
+			<div id= "navigation_container">	
+				<div id="search_bar">
+					<div id="search_bar_content" >
+						<div id="searchframe">
+						    <form id="btn_subfrom" method="get" name="btn_subfrom" action="/was5/web/search" target="_blank">
+						      <div class="ilb js_il_box">
+						        <input type="text" name="searchword" id="header_search_kw" autocomplete="off" />
+						        <input type="button" value="search" class="button_add" />
+						      </div>
+						    </form>
+						</div>
+						<a id="login" href="{{navigation_link1}}" class="textem" style="float: left">&nbsp &nbsp {{navigation_label1}} &nbsp </a>
+						<a style="float: left">/</a>
+						<a id="register" href="{{navigation_link2}}" class="textem" style="float: left">&nbsp {{navigation_label2}} &nbsp </a>
+					 </div>
+				</div>
+				<div id="navigation">
+					<div class ="navigationitem">
+						<a href="index.html">Home</a>
+					</div>
+					<div class ="navigationitem">
+						<a href="features.html">Features</a>
+					</div>
+					<div class ="navigationitem">
+						<a href="news.html">News</a>
+					</div>
+					<div class ="navigationitem">
+						<a href="about.html">About</a>
+					</div>
+					<div class ="navigationitem">
+						<a href="contact.html">Contact</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="mycontents">
+		<div id="menucontainer" style="	background-color:#EEEEEE;height:650px;width:200px;float:left;">
+			<div>
+					<b>User panel</b>
+			</div>
+			<br>
+			<div class="mylabel">
+				<a href="user_control.html">Basic information</a>
+			</div>
+			<br>
+			<div class="mylabel">
+				<a href="device_management.html">Device Management</a>
+			</div>
+			<br>
+			<div class="mylabel">
+				<a href="data_viewing.html">Data Viewing</a>
+			</div>
+			<!-- <br>
+			<div class="mylabel">
+				<a href="infrared_sensor.html">Infrared Sensor</a>
+			</div> -->
+		</div>
+		<div class="section">
+			<h1>Basic information</h1>
+			<p>
+				Update your information if you want
+			</p>
+			<form action="user_control.html" method="post" class="message">
+				{% csrf_token %} 
+			    {{ form.non_field_errors }}
+				<div class="RegisterEntry">
+			        {{ form.Firstname.errors }}
+					<div class="Registerlabel">
+			        <label for="id_Firstname">First name</label>
+					</div>
+					<div class="RegisterField">
+			        {{ form.Firstname }}
+					</div>
+			    </div>
+				<div class="RegisterEntry">
+			        {{ form.Lastname.errors }}
+					<div class="Registerlabel">
+			        <label for="id_Lastname">Last name</label>
+					</div>
+					<div class="RegisterField">
+			        {{ form.Lastname }}
+					</div>
+			    </div>
+				<div class="RegisterEntry">
+			        {{ form.Email.errors }}
+			    	<div class="Registerlabel">
+			        <label for="id_email">Email</label>
+					</div>
+					<div class="RegisterField">
+			        {{ form.Email }}
+					</div>
+			    </div>
+				<div class="RegisterEntry">
+			        {{ form.NewPassword.errors }}
+			    	<div class="Registerlabel">
+			        <label for="id_NewPassword">New Password</label>
+					</div>
+					<div class="RegisterField">	
+			        {{ form.NewPassword }}
+					</div>
+			    </div>
+				<div class="RegisterEntry">
+			        {{ form.ReEnterPassword.errors }}
+			    	<div class="Registerlabel">
+			        <label for="id_ReEnterPassword">Re-Enter Password</label>
+					</div>
+					<div class="RegisterField">
+			        {{ form.ReEnterPassword }}
+					</div>
+			    </div>
+			    <p><input type="submit" value="Update" /></p>
+			</form>
+		</div>
+
+	</div>
+	<div id="footer">
+		<div id="footerbox">
+			<div class="clearfix">
+				<div id="connect">
+					<a href="http://freewebsitetemplates.com/go/facebook/" target="_blank" class="facebook"></a><a href="http://freewebsitetemplates.com/go/googleplus/" target="_blank" class="googleplus"></a><a href="http://freewebsitetemplates.com/go/twitter/" target="_blank" class="twitter"></a><a href="http://www.freewebsitetemplates.com/misc/contact/" target="_blank" class="tumbler"></a>
+				</div>
+				<p>
+					© 2023 Zerotype. All Rights Reserved.
+				</p>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
