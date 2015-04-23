@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+{% load staticfiles %}
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <title>FastNews</title>
+
+    <link rel="stylesheet" href="/static/css/login_style.css">
+
+
+</head>
+
+<body>
+<div class="login-wrap">
+  <h2>Login</h2>
+
+  <form method="post" class="form">
+	  {% csrf_token %}
+	  <div name="un">
+	     {{ form.username }}
+	  </div>
+	  <div name="pw">
+	     {{ form.password }}
+	  </div>
+
+    <!-- <input type="text" placeholder="Username" name="un" value='{{ form.username }}'/>
+    <input type="password" placeholder="Password" name="pw" value='{{ form.password }}'/> -->
+	<p><input type="submit" value="Sign in" /></p>
+  	{% if errors %}
+  	    <ul class='form-errors'>
+  	            <p>{{ errors }}</p>
+  	    </ul>
+  	{% endif %}
+	
+    <!-- <button> Sign in </button> -->
+    <a href="{% url "register" %}"> <p> Don't have an account? Register </p></a>
+  </form>
+</div>
+
+
+  <script src="/static/css/login.js"></script>
+
+</body>
+
+</html>
