@@ -1,0 +1,3 @@
+{% for news in object_list %}
+	<li><div class="date"><p><span>{{news.day}}</span>{{news.month}}</p></div><h2 ><a href={{ news.weblinks }}>{{ news.theme }} </a></h2><p>{{ news.text }}</p></li>
+{% endfor %}

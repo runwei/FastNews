@@ -9,9 +9,8 @@ import hashlib
 
 class article2db:
     def __init__(self):
-        s3 = S3Connection('AKIAJSNE54BGVCVJ3RXA','n0bH9+8t1JVmphanLicAtTfWD5Huy6D1tTGWjOm+')
+        s3 = S3Connection('AKIAILFPCHJZ4B4S6WBA','14dMH/aJM9a0X+nAC2FYufcVhnm/fQxc5AWvaxnp')
         self.bucket=s3.get_bucket('newslist') 
-        self.md = hashlib.md5()
         self.alchemy = alchemyapi.AlchemyAPI()
             
     def store_key_value(self,key,value):
@@ -23,27 +22,42 @@ class article2db:
             return True
         else:
             return False
-            
+    
+    def exist_url(self,url):
+        hashnum = hashlib.md5(url).hexdigest()
+        possiblekey = self.bucket.get_key('%s_titl' % hashnum)
+        if possiblekey is None:
+            return False
+        else:
+            return True
+    
+    def exist_hashnum(self,hashnum):
+        possiblekey = self.bucket.get_key('%s_titl' % hashnum)
+        if (possiblekey) is None:
+            return False
+        else:
+            return True
+        
+    
     def put_url(self, url):
         keywords = self.alchemy.keywords("url", url)
         text = self.alchemy.text("url",url)
         title = self.alchemy.title("url",url)
         author = self.alchemy.author("url",url)
-        # print keywords['status']
         if keywords['status'] != 'ERROR':
-            self.md.update(url)
-            tmpnum = self.md.hexdigest() 
-            self.store_key_value('%s_titl' % tmpnum, title['title'])
-            self.store_key_value('%s_text' % tmpnum, text['text'])
-            self.store_key_value('%s_auth' % tmpnum, author['author'])
-            self.store_key_value('%s_urll' % tmpnum, url)
+            hashnum = hashlib.md5(url).hexdigest()
+            
+            self.store_key_value('%s_titl' % hashnum, title['title'])
+            self.store_key_value('%s_text' % hashnum, text['text'])
+            self.store_key_value('%s_auth' % hashnum, author['author'])
+            self.store_key_value('%s_urll' % hashnum, url)
             
             res = ""
             for item in keywords['keywords']:
                 kws = item ['text']
                 res = res + kws +" "
             res = res[:-1]
-            self.store_key_value('%s_keyw' % tmpnum, res)
+            self.store_key_value('%s_keyw' % hashnum, res)
             return True
         else:
             return False

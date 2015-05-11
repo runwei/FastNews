@@ -4,7 +4,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<meta name="description" content="index">	
+	<meta name="description" content="world">	
 	<title>HeadlineNews</title>
 	<!-- Scripts -->
 	<script src="/static/css/jquery-2.0.3.min.js"></script>
@@ -16,6 +16,9 @@
 	<!-- Cascading Style Sheets -->
 	<link href="/static/css/bootstrap.min.css" rel="stylesheet" media="screen">
 	<link rel="stylesheet" href="/static/css/mystyle.css" type="text/css">	
+	
+	
+	<!-- <link rel="stylesheet" href="static/css/mystyle.css" type="text/css">	 -->
 </head>
 <body>
 	<div id="header">
@@ -73,7 +76,7 @@
 
 	<div id="contents">
 		<div class="mymain">
-			<h1>Latest News</h1>
+			<h1>World News</h1>
 			<div class="news" id="toappend">
 				{% csrf_token %}
 				{% if object_list %}
