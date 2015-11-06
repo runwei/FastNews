@@ -1,5 +1,5 @@
 # FastNews
-FastNews is a news article recommendation system that adapts to personalized needs by adaptively learning users' interests in reading articles.
+FastNews(http://52.10.183.132/) is a news article recommendation system that adapts to personalized needs by adaptively learning users' interests in reading articles.
 
 The system consists of the following four components:
 
